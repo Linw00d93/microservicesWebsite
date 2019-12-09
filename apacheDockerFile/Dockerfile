@@ -1,4 +1,4 @@
-FROM ubuntu AS WebServer
+FROM ubuntu
 RUN apt-get update -y 
 RUN apt-get upgrade -y
 RUN apt-get install git -y 
@@ -14,10 +14,3 @@ RUN cd /var/www/html && rename -f 's/basicHTML.html/index.html/' *.html
 RUN service nginx restart 
 RUN ifconfig
 RUN /etc/init.d/nginx restart
-
-FROM ubuntu AS Nodejs
-RUN apt-get update -y && apt-get upgrade -y && apt-get install git -y && apt-get install nginx -y 
-
-FROM redis AS cache
-RUN apt-get update -y && apt-get upgrade -y && apt-get install git -y
-
